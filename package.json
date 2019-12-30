@@ -1,0 +1,25 @@
+{
+  "name": "webpack-script",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This is a webpack recipe I intend to update from time to time. This recipe can be tailored accordingly to fit the projects needs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fluffyrat/webpack-script.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fluffyrat/webpack-script/issues"
+  },
+  "homepage": "https://github.com/fluffyrat/webpack-script#readme",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
