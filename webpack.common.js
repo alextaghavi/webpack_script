@@ -1,26 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
     entry: {
       main: "./src/index.js", //Look for index.js in de src folder
       vendor: "./src/vendor.js" //Look for vendor.js in de src folder 
     }, 
-    plugins: [new HtmlWebpackPlugin({
-      template: "./src/template.html"
-      /*Useful plugin for webpack bundles that include a hash in the filename
-      Generate an html5 file that includes all webpack bundles in the body using a <script> tag
-      The body of the html5 file is provided by template.html*/
-    })],
     module: {
         rules: [
-          {
-            test: /\.scss$/i, //Look for files ending with .scss extension
-            use: [
-                "style-loader", //Style-loader injects the css into the DOM
-                "css-loader", //Css-loader turns css into javascript
-                "sass-loader" //Turns sass into css
-            ],  
-          },
           {
             test: /\.html$/, //Look for files ending with .html extension
             use: ["html-loader"] //Transform a src attribute into a require() call
