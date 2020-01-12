@@ -1,7 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: "./src/index.js", //Look for index.js in de src folder
+    entry: {
+      main: "./src/index.js", //Look for index.js in de src folder
+      vendor: "./src/vendor.js" //Look for vendor.js in de src folder 
+    }, 
     plugins: [new HtmlWebpackPlugin({
       template: "./src/template.html"
       /*Useful plugin for webpack bundles that include a hash in the filename
