@@ -9,12 +9,9 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = merge(common,{ //Merge webpack.common.js with the content in curly braces
     mode: "production",
     output: {
-        filename: "[name].[contenthash].bundle.js", //Output js file will contain different hash with each edited version
+        filename: "js/[name].[contenthash].bundle.js", //Output js file will contain different hash with each edited version
         path: path.resolve(__dirname, "dist") //Place main.[contenthash].js in dist folder
     },
-    // optimization: {
-    //     minimizer: []
-    // },
     plugins: [
         new CleanWebpackPlugin(), 
         new HtmlWebpackPlugin({
@@ -29,7 +26,7 @@ module.exports = merge(common,{ //Merge webpack.common.js with the content in cu
                 removeAttributeQuotes: true
             }
         }),
-        new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
+        new MiniCssExtractPlugin({filename: 'css/[name].[contenthash].css'}),
         new OptimizeCssAssetsPlugin({
             cssProcessorPluginOptions: {
               preset: ['default', { discardComments: { removeAll: true } }],

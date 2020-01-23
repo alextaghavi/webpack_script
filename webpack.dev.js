@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = merge(common,{ //Merge webpack.common.js with the content in curly braces
     mode: "development",
     output: {
-        filename: "[name].bundle.js", //Output js file will will be called main.bundle.js
-        path: path.resolve(__dirname, "dist") //Place main.[contenthash].js in dist folder
+        filename: "js/[name].bundle.js", //Output js file will be called main.bundle.js
+        path: path.resolve(__dirname, "dist"), //The output directory where main.[contenthash].js is saved in dist folder
     },
     module:{
         rules: [
@@ -18,13 +18,13 @@ module.exports = merge(common,{ //Merge webpack.common.js with the content in cu
                     "css-loader", //Css-loader turns css into javascript
                     "sass-loader" //Turns sass into css
                 ],  
-              }
+            }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: "./src/template.html"
+    plugins: [
         /*Useful plugin for webpack bundles that include a hash in the filename
         Generate an html5 file that includes all webpack bundles in the body using a <script> tag
         The body of the html5 file is provided by template.html*/
-      })],
+        new HtmlWebpackPlugin({template: "./src/template.html"})
+    ]
 });

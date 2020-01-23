@@ -2,10 +2,10 @@
   "name": "webpack-script",
   "version": "1.0.0",
   "private": true,
-  "description": "This is a webpack recipe I intend to update from time to time. This recipe can be tailored accordingly to fit the projects needs.",
+  "description": "Webpack script to be used and edited based on project needs",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "start": "webpack-dev-server --config webpack.dev.js --open --hot --no-live-reload",
     "build": "webpack --config webpack.prod.js"
   },
   "repository": {
@@ -20,6 +20,12 @@
   },
   "homepage": "https://github.com/fluffyrat/webpack-script#readme",
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-pipeline-operator": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
+    "babel-loader": "^8.0.6",
     "bootstrap": "^4.4.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.0",
@@ -28,7 +34,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "popper.js": "^1.16.0",
     "sass-loader": "^8.0.0",
@@ -37,5 +43,9 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1",
     "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.8.3",
+    "lodash": "^4.17.15"
   }
 }

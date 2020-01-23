@@ -10,7 +10,7 @@ module.exports = {
             use: ["html-loader"] //Transform a src attribute into a require() call
           },
           {
-            test: /\.(svg|png|jpg|gif)$/, //Look for files ending with .svg, .png, .jpg or .gif extension
+            test: /\.(png|jpg|jpeg|svg|gif)$/, //Look for files ending with these extensions
             use: {
               loader: "file-loader",
               /*Resolve import/require() on the above mentioned files into a url and produce the file into the output directory
@@ -20,6 +20,20 @@ module.exports = {
                 outputPath: "img", //Create an img folder and place images in here
                 esModule: false //This is important to set, otherwise images will not load properly
               }
+            }
+          },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets:["@babel/preset-env"],
+                    plugins: [
+                        "@babel/plugin-transform-runtime",
+                        ["@babel/plugin-proposal-pipeline-operator", {proposal:"minimal"}]
+                    ]
+                }
             }
           }
         ],
