@@ -5,6 +5,13 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
+const glob = require('glob');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+
+const PATHS = {
+    src: path.join(__dirname, 'src')
+  }
 
 module.exports = merge(common,{ //Merge webpack.common.js with the content in curly braces
     mode: "production",
@@ -31,7 +38,10 @@ module.exports = merge(common,{ //Merge webpack.common.js with the content in cu
             cssProcessorPluginOptions: {
               preset: ['default', { discardComments: { removeAll: true } }],
             }
-        })
+        }),
+        new PurgecssPlugin({ //PurgeCSS is a tool to remove unused CSS.
+            paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
+        }),
     ],
     module:{
         rules:[
@@ -40,8 +50,17 @@ module.exports = merge(common,{ //Merge webpack.common.js with the content in cu
                 use: [
                     MiniCssExtractPlugin.loader, //Extract css into files
                     "css-loader", //Css-loader turns css into javascript
+                    {
+                        loader: 'postcss-loader', //A tool for transforming css with javaScript
+                        options: {
+                            ident: 'postcss',
+                            plugins: () => [
+                            postcssPresetEnv() //includes autoprefixer and polyfills and future enabled css(https://preset-env.cssdb.org/) 
+                            ]
+                        }
+                    }, 
                     "sass-loader" //Turns sass into css
-                ],  
+                ], 
               },
         ]
     }
